@@ -1,0 +1,56 @@
+[
+  {
+    "id": "productThinking",
+    "icon": "✦",
+    "titleKey": "productSkills.card.productThinking.title",
+    "descKey": "productSkills.card.productThinking.desc"
+  },
+  {
+    "id": "problemDiscovery",
+    "icon": "?",
+    "titleKey": "productSkills.card.problemDiscovery.title",
+    "descKey": "productSkills.card.problemDiscovery.desc"
+  },
+  {
+    "id": "userCenteredDesign",
+    "icon": "◎",
+    "titleKey": "productSkills.card.userCenteredDesign.title",
+    "descKey": "productSkills.card.userCenteredDesign.desc"
+  },
+  {
+    "id": "prioritization",
+    "icon": "1",
+    "titleKey": "productSkills.card.prioritization.title",
+    "descKey": "productSkills.card.prioritization.desc"
+  },
+  {
+    "id": "aiWorkflowDesign",
+    "icon": "AI",
+    "titleKey": "productSkills.card.aiWorkflowDesign.title",
+    "descKey": "productSkills.card.aiWorkflowDesign.desc"
+  },
+  {
+    "id": "processOptimization",
+    "icon": "↺",
+    "titleKey": "productSkills.card.processOptimization.title",
+    "descKey": "productSkills.card.processOptimization.desc"
+  },
+  {
+    "id": "dataDrivenDecisions",
+    "icon": "∑",
+    "titleKey": "productSkills.card.dataDrivenDecisions.title",
+    "descKey": "productSkills.card.dataDrivenDecisions.desc"
+  },
+  {
+    "id": "communicationPresentation",
+    "icon": "Aa",
+    "titleKey": "productSkills.card.communicationPresentation.title",
+    "descKey": "productSkills.card.communicationPresentation.desc"
+  },
+  {
+    "id": "executionOwnership",
+    "icon": "✓",
+    "titleKey": "productSkills.card.executionOwnership.title",
+    "descKey": "productSkills.card.executionOwnership.desc"
+  }
+]

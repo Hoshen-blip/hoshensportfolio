@@ -1,0 +1,88 @@
+---
+import { cvUrl, emailAddress, linkedinUrl, recommendationLetterUrl } from "../data/site";
+
+const mailto = `mailto:${emailAddress}?subject=PM%20Portfolio%20-%20Let's%20Talk`;
+const cvAvailable = true;
+
+interface Props {
+  letstalkPortraitPath?: string | null;
+}
+
+const { letstalkPortraitPath = null } = Astro.props as Props;
+---
+
+<section id="contact" class="section-fade relative py-16" data-reveal>
+  <div class={`mx-auto grid max-w-4xl gap-8 px-4 sm:px-6 lg:px-8 ${letstalkPortraitPath ? "lg:grid-cols-[0.8fr_1fr] lg:items-center" : ""}`}>
+    {
+      letstalkPortraitPath && (
+        <img
+          src={letstalkPortraitPath}
+          alt="Hoshen Lichi"
+          data-i18n-attr="alt:hero.profileAlt"
+          width="480"
+          height="480"
+          loading="lazy"
+          decoding="async"
+          class="mx-auto h-56 w-56 rounded-lg object-cover shadow-card"
+        />
+      )
+    }
+
+    <div class="mx-auto max-w-[540px] text-center rtl:text-right">
+      <h2 class="section-title font-bold" data-i18n="contact.header">Let's Talk</h2>
+      <div class="section-rule mx-auto rtl:ms-0"></div>
+      <p class="text-lg italic leading-[1.6] text-color-text-primary" data-i18n="contact.closing">
+        I'm actively looking for junior Product Manager roles where I can contribute from day one. If my background looks like a fit, or if you're just curious, I'd love to connect.
+      </p>
+
+      <div class="mt-8 flex flex-col items-stretch gap-3 text-start">
+        <a href={mailto} class="btn btn-secondary justify-start gap-2" aria-label={`E-mail Hoshen at ${emailAddress}`}>
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <polyline points="2,4 12,13 22,4"></polyline>
+          </svg>
+          <span data-i18n="contact.email">E-mail me</span>
+        </a>
+        <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary justify-start gap-2">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+            <line x1="8" y1="11" x2="8" y2="17"></line>
+            <line x1="8" y1="8" x2="8" y2="8.5"></line>
+            <path d="M12 17v-4a2 2 0 0 1 4 0v4"></path>
+            <line x1="12" y1="11" x2="12" y2="17"></line>
+          </svg>
+          <span data-i18n="contact.linkedin">Connect on LinkedIn</span>
+          <span class="sr-only" data-i18n="a11y.opensNewTab">(opens in new tab)</span>
+        </a>
+        {
+          cvAvailable ? (
+            <a href={cvUrl} download class="btn btn-primary justify-start gap-2">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4"></path>
+                <path d="M5 20h14"></path>
+              </svg>
+              <span data-i18n="contact.cv">Download CV</span>
+            </a>
+          ) : (
+            <span aria-disabled="true" class="btn justify-start gap-2 cursor-not-allowed border border-color-border bg-color-surface opacity-45">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4"></path>
+                <path d="M5 20h14"></path>
+              </svg>
+              <span data-i18n="contact.cvComingSoon">CV - Coming Soon</span>
+            </span>
+          )
+        }
+        {
+          recommendationLetterUrl && (
+            <a href={recommendationLetterUrl} target="_blank" rel="noopener noreferrer" class="btn btn-ghost justify-start">
+              <span aria-hidden="true" class="me-2">★</span>
+              <span data-i18n="contact.recLetter">View Recommendation Letter</span>
+              <span class="sr-only" data-i18n="a11y.opensNewTab">(opens in new tab)</span>
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

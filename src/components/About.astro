@@ -1,0 +1,59 @@
+---
+import { recommendationLetterUrl } from "../data/site";
+import CredentialRow from "./CredentialRow.astro";
+
+interface Props {
+  portraitPath?: string | null;
+}
+
+const { portraitPath = null } = Astro.props as Props;
+---
+
+<section id="about" class="section-fade relative py-16" data-reveal>
+  <div class={`mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:px-8 ${portraitPath ? "lg:grid-cols-[0.7fr_1fr] lg:items-center" : ""}`}>
+    {
+      portraitPath && (
+        <img
+          src={portraitPath}
+          alt="Hoshen Lichi"
+          data-i18n-attr="alt:hero.profileAlt"
+          width="480"
+          height="480"
+          loading="lazy"
+          decoding="async"
+          class="mx-auto h-64 w-64 rounded-lg object-cover shadow-card lg:h-80 lg:w-80"
+        />
+      )
+    }
+    <div class="max-w-[760px]">
+      <h2 class="section-title font-normal" data-i18n="about.header">About me</h2>
+      <div class="section-rule"></div>
+      <div class="space-y-5 text-base leading-[1.65] text-color-text-primary">
+        <p data-i18n="about.body">
+          Before I knew what product management was, I was already doing it: defining requirements, coordinating across teams, and delivering data-driven tools used by 50+ stakeholders during my military service. After completing the KERNELiOS AI Practitioner program, I moved through full product cycles on real problems, from user discovery and workflow design to AI-powered MVP delivery and impact measurement.
+        </p>
+        <p>
+          <span data-i18n="about.p3">I'm now focused on junior PM roles where I can bring that same combination of structured thinking, user empathy, and execution bias to a product team.</span>
+          {
+            recommendationLetterUrl && (
+              <>
+                {" "}
+                <a
+                  href={recommendationLetterUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-semibold text-color-link underline underline-offset-4 hover:text-color-link-hover"
+                >
+                  <span aria-hidden="true">★</span>{" "}
+                  <span data-i18n="about.recLetter">View Recommendation Letter</span>
+                  <span class="sr-only" data-i18n="a11y.opensNewTab">(opens in new tab)</span>
+                </a>
+              </>
+            )
+          }
+        </p>
+      </div>
+      <CredentialRow />
+    </div>
+  </div>
+</section>

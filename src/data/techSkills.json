@@ -1,0 +1,32 @@
+[
+  {
+    "id": "discover",
+    "icon": "◎",
+    "titleKey": "howIBuild.card.discover.title",
+    "descKey": "howIBuild.card.discover.desc"
+  },
+  {
+    "id": "map",
+    "icon": "↺",
+    "titleKey": "howIBuild.card.map.title",
+    "descKey": "howIBuild.card.map.desc"
+  },
+  {
+    "id": "prototype",
+    "icon": "AI",
+    "titleKey": "howIBuild.card.prototype.title",
+    "descKey": "howIBuild.card.prototype.desc"
+  },
+  {
+    "id": "measure",
+    "icon": "∑",
+    "titleKey": "howIBuild.card.measure.title",
+    "descKey": "howIBuild.card.measure.desc"
+  },
+  {
+    "id": "ship",
+    "icon": "✓",
+    "titleKey": "howIBuild.card.ship.title",
+    "descKey": "howIBuild.card.ship.desc"
+  }
+]

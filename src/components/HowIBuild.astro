@@ -1,0 +1,202 @@
+---
+import techSkills from "../data/techSkills.json";
+import en from "../i18n/en.json";
+
+const copy = (key: string) => en[key as keyof typeof en] ?? key;
+const cardOffsets = ["lg:translate-y-5", "lg:-translate-y-5", "lg:translate-y-0", "lg:translate-y-5", "lg:-translate-y-5"];
+---
+
+<section id="how-i-build" class="section-fade relative bg-color-tech-bg py-16 lg:py-20" data-reveal>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <h2 class="section-title font-normal" data-i18n="howIBuild.header">How I Build</h2>
+    <div class="section-rule"></div>
+    <p class="mb-10 max-w-2xl text-base leading-[1.65] text-color-text-primary" data-i18n="howIBuild.intro">
+      I combine product discovery, AI workflow design, and practical delivery habits to move from fuzzy problems to working MVPs.
+    </p>
+
+    <div class="workflow-editorial relative" aria-label="How I Build flow">
+      <figure class="workflow-origin">
+        <img
+          src="/assets/images/hoshens_photo-removebg-preview.png"
+          alt="Hoshen Lichi"
+          data-i18n-attr="alt:hero.profileAlt"
+          width="436"
+          height="572"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+
+      <div class="workflow-steps">
+        {
+          techSkills.map((skill, index) => (
+            <article class={`workflow-card ${cardOffsets[index]}`}>
+              <div class="workflow-number" aria-hidden="true">{index + 1}</div>
+              <h3 data-i18n={skill.titleKey}>
+                {copy(skill.titleKey)}
+              </h3>
+              <p data-i18n={skill.descKey}>
+                {copy(skill.descKey)}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .workflow-editorial {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .workflow-editorial::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset-inline: 50%;
+    top: 16.25rem;
+    bottom: 2rem;
+    width: 1px;
+    background: linear-gradient(to bottom, rgba(122, 158, 135, 0), rgba(122, 158, 135, 0.34), rgba(122, 158, 135, 0));
+  }
+
+  .workflow-origin {
+    position: relative;
+    z-index: 2;
+    width: min(84vw, 340px);
+    margin: 0 auto;
+  }
+
+  .workflow-origin::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 7% -16% 12% 4%;
+    border-radius: 58% 42% 46% 54%;
+    background:
+      radial-gradient(ellipse at 42% 44%, rgba(167, 190, 174, 0.28), rgba(167, 190, 174, 0.1) 47%, transparent 72%),
+      radial-gradient(ellipse at 74% 62%, rgba(212, 165, 165, 0.13), transparent 64%);
+    filter: blur(12px);
+    transform: rotate(-12deg);
+  }
+
+  .workflow-origin::after {
+    content: "";
+    position: absolute;
+    inset: auto 7% -1px;
+    height: 16%;
+    background: linear-gradient(to bottom, rgba(240, 243, 241, 0), rgba(240, 243, 241, 0.88));
+    pointer-events: none;
+  }
+
+  .workflow-origin img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .workflow-steps {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .workflow-card {
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.78);
+    padding: 1.25rem;
+  }
+
+  .workflow-number {
+    display: inline-flex;
+    width: 1.75rem;
+    height: 1.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(122, 158, 135, 0.42);
+    border-radius: 999px;
+    color: var(--color-primary-dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .workflow-card h3 {
+    margin: 0.85rem 0 0;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .workflow-card p {
+    margin: 0.55rem 0 0;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.58;
+  }
+
+  @media (min-width: 1024px) {
+    .workflow-editorial {
+      grid-template-columns: 240px minmax(0, 1fr);
+      align-items: center;
+      gap: 0;
+      min-height: 360px;
+    }
+
+    .workflow-editorial::before {
+      inset-inline: 13.85rem 2rem;
+      top: 45.5%;
+      bottom: auto;
+      width: auto;
+      height: 1px;
+      background: linear-gradient(to right, rgba(122, 158, 135, 0.36), rgba(122, 158, 135, 0.56), rgba(122, 158, 135, 0.16));
+    }
+
+    .workflow-origin {
+      width: 300px;
+      margin-inline: 0;
+      transform: translate(-5.25rem, -58px);
+    }
+
+    .workflow-origin img {
+      transform: translateX(0);
+    }
+
+    .workflow-steps {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      overflow: visible;
+      padding-block: 2.75rem;
+      padding-inline: 0;
+      margin-inline-start: -1.35rem;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .workflow-steps::-webkit-scrollbar {
+      display: none;
+    }
+
+    .workflow-card {
+      flex: 1 1 0;
+      min-width: 0;
+      min-height: 178px;
+      padding: 1.2rem 1.2rem 1.25rem;
+      box-shadow: 0 8px 24px rgba(74, 74, 74, 0.035);
+    }
+
+    .workflow-card:first-child {
+      margin-inline-start: -0.45rem;
+    }
+  }
+</style>

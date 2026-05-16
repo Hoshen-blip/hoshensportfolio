@@ -1,0 +1,44 @@
+---
+import en from "../i18n/en.json";
+
+const decisions = [
+  {
+    titleKey: "featured.decisions.cell1.title",
+    bodyKey: "featured.decisions.cell1.body"
+  },
+  {
+    titleKey: "featured.decisions.cell2.title",
+    bodyKey: "featured.decisions.cell2.body"
+  },
+  {
+    titleKey: "featured.decisions.cell3.title",
+    bodyKey: "featured.decisions.cell3.body"
+  },
+  {
+    titleKey: "featured.decisions.cell4.title",
+    bodyKey: "featured.decisions.cell4.body"
+  }
+];
+
+const copy = (key: string) => en[key as keyof typeof en] ?? key;
+---
+
+<article class="rounded-lg border border-color-border bg-color-surface p-5 shadow-card">
+  <h4 class="text-base font-semibold text-color-text-primary" data-i18n="featured.decisions.heading">
+    Key Product Decisions
+  </h4>
+  <div class="mt-5 grid gap-3 sm:grid-cols-2">
+    {
+      decisions.map((decision) => (
+        <section class="rounded-lg border border-color-border bg-color-surface-tinted p-4">
+          <h5 class="text-sm font-semibold text-color-accent-dark" data-i18n={decision.titleKey}>
+            {copy(decision.titleKey)}
+          </h5>
+          <p class="mt-2 text-sm leading-[1.55] text-color-text-primary" data-i18n={decision.bodyKey}>
+            {copy(decision.bodyKey)}
+          </p>
+        </section>
+      ))
+    }
+  </div>
+</article>

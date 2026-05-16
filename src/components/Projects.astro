@@ -1,0 +1,32 @@
+---
+import projects from "../data/projects.json";
+import ProjectCard from "./ProjectCard.astro";
+import FeaturedCaseStudy from "./FeaturedCaseStudy.astro";
+---
+
+<section id="projects" class="section-fade relative py-16" data-reveal>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="section-title font-semibold" data-i18n="projects.header">Projects</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="mb-8 flex gap-2" aria-label="Project carousel controls">
+        <button class="projects-carousel-button" type="button" data-carousel-prev aria-label="Previous project" data-i18n-attr="aria-label:projects.carousel.prev">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button class="projects-carousel-button" type="button" data-carousel-next aria-label="Next project" data-i18n-attr="aria-label:projects.carousel.next">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="projects-carousel" class="projects-carousel" tabindex="0">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </div>
+  <FeaturedCaseStudy />
+</section>

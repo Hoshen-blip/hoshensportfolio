@@ -1,0 +1,44 @@
+---
+import "../styles/global.css";
+import en from "../i18n/en.json";
+import he from "../i18n/he.json";
+import i18nScriptUrl from "../scripts/i18n.js?url";
+import animationsScriptUrl from "../scripts/animations.js?url";
+
+const title = "Hoshen Lichi - Junior Product Manager";
+const description =
+  "Portfolio of Hoshen Lichi, a junior Product Manager candidate with military operations background and hands-on AI implementation experience.";
+---
+
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/assets/images/portrait-gaze.webp" />
+    <meta property="og:site_name" content="Hoshen Lichi Portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#F7F7F2" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600;1,700&family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;600&family=Frank+Ruhl+Libre:wght@400;700&family=Heebo:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>document.documentElement.classList.add("js");</script>
+  </head>
+  <body>
+    <a class="skip-to-main" href="#main" data-i18n="a11y.skip">Skip to main content</a>
+    <script is:inline type="application/json" id="i18n-en" set:html={JSON.stringify(en)} />
+    <script is:inline type="application/json" id="i18n-he" set:html={JSON.stringify(he)} />
+    <slot />
+    <script is:inline type="module" src={i18nScriptUrl}></script>
+    <script is:inline type="module" src={animationsScriptUrl}></script>
+  </body>
+</html>

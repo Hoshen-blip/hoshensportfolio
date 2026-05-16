@@ -1,0 +1,45 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  valueKey?: string;
+  labelKey?: string;
+  countTarget?: number;
+  suffix?: string;
+  variant?: "pill" | "card";
+}
+
+const {
+  value,
+  label,
+  valueKey,
+  labelKey,
+  countTarget,
+  suffix = "",
+  variant = "card"
+} = Astro.props;
+
+const isPill = variant === "pill";
+const wrapperClass = isPill
+  ? "rounded-full border border-color-border bg-color-surface/90 px-4 py-2 text-center shadow-card transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:border-color-accent-dark hover:shadow-[0_4px_12px_rgba(180,128,128,0.15)]"
+  : "rounded-lg border border-color-border bg-color-surface p-4 shadow-card";
+---
+
+<article class={wrapperClass}>
+  <div class={isPill ? "space-y-1 text-center" : "space-y-1"}>
+    <span
+      class={`metric-value block text-lg font-semibold leading-none text-color-accent-dark ${isPill ? "text-center" : ""}`}
+      data-i18n={valueKey}
+      data-count-target={countTarget}
+      data-count-suffix={suffix}
+    >
+      {value}
+    </span>
+    <span
+      class={`block text-xs font-semibold uppercase leading-tight tracking-[0.08em] ${isPill ? "text-center text-color-text-primary" : "text-color-text-secondary"}`}
+      data-i18n={labelKey}
+    >
+      {label}
+    </span>
+  </div>
+</article>

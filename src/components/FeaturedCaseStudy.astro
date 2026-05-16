@@ -1,0 +1,119 @@
+---
+import { pickItYoutubeEmbedUrl } from "../data/site";
+import en from "../i18n/en.json";
+import MetricCard from "./MetricCard.astro";
+
+const metrics = [
+  {
+    value: "+20%",
+    label: "efficiency",
+    valueKey: "featured.metric1.value",
+    labelKey: "featured.metric1.label"
+  },
+  {
+    value: "50+",
+    label: "Real users",
+    valueKey: "featured.metric2.value",
+    labelKey: "featured.metric2.label"
+  },
+  {
+    value: "AI",
+    label: "Classification",
+    valueKey: "featured.metric3.value",
+    labelKey: "featured.metric3.label"
+  }
+];
+
+const psiItems = [
+  {
+    labelKey: "featured.psi.problemLabel",
+    bodyKey: "featured.psi.problem"
+  },
+  {
+    labelKey: "featured.psi.solutionLabel",
+    bodyKey: "featured.psi.solution"
+  },
+  {
+    labelKey: "featured.psi.impactLabel",
+    bodyKey: "featured.psi.impact"
+  }
+];
+
+const copy = (key: string) => en[key as keyof typeof en] ?? key;
+---
+
+<div id="featured-case-study" class="mt-16 border-t-[3px] border-color-primary bg-color-featured-bg px-4 py-16 sm:px-6 lg:px-8 lg:py-24" data-reveal>
+  <section class="mx-auto max-w-5xl">
+    <header class="mb-16 text-center">
+      <p class="mb-4 inline-flex rounded-full bg-color-primary px-3 py-1 text-xs font-semibold text-color-text-primary">
+        <span aria-hidden="true">★</span>
+        <span class="ms-1" data-i18n="featured.badge">Featured Case Study</span>
+      </p>
+      <h2
+        class="font-display-en text-[36px] font-normal italic leading-[1.1] text-color-accent-dark lg:text-[56px]"
+        data-i18n="featured.title"
+      >
+        pick-IT
+      </h2>
+      <div class="mx-auto my-4 h-0.5 w-[60px] bg-color-primary"></div>
+      <p class="text-sm text-color-text-secondary" data-i18n="featured.subtitle">Experiment Management System · Agricultural R&D</p>
+
+      <div class="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-4">
+        {
+          metrics.map((metric) => (
+            <MetricCard
+              value={metric.value}
+              label={metric.label}
+              valueKey={metric.valueKey}
+              labelKey={metric.labelKey}
+              variant="card"
+            />
+          ))
+        }
+      </div>
+    </header>
+
+    <div class="mb-16 flex flex-col gap-10">
+      <img
+        src="/assets/images/pick-it-ui.webp"
+        alt="pick-IT application login screen - agricultural experiment management system"
+        data-i18n-attr="alt:featured.uiAlt"
+        width="1200"
+        height="675"
+        loading="lazy"
+        decoding="async"
+        class="w-full rounded-lg border border-color-border shadow-[0_4px_16px_rgba(74,74,74,0.10)]"
+      />
+
+      <div class="aspect-video w-full overflow-hidden rounded-lg border border-color-border bg-color-surface">
+        <iframe
+          class="h-full w-full"
+          src={pickItYoutubeEmbedUrl}
+          title="pick-IT Promo Video"
+          data-i18n-attr="title:featured.videoTitle,aria-label:featured.videoTitle"
+          aria-label="Embedded video: pick-IT promotional video"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="mb-16 grid gap-4 lg:grid-cols-3">
+      {
+        psiItems.map((item) => (
+          <article class="rounded-xl border border-color-border bg-color-surface p-6">
+            <h3 class="text-[11px] font-semibold uppercase tracking-[0.1em] text-color-primary-dark" data-i18n={item.labelKey}>
+              {copy(item.labelKey)}
+            </h3>
+            <p class="mt-2 line-clamp-3 text-sm font-normal leading-[1.6] text-color-text-primary" data-i18n={item.bodyKey}>
+              {copy(item.bodyKey)}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+
+  </section>
+</div>

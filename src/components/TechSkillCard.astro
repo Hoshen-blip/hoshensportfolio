@@ -1,0 +1,27 @@
+---
+import en from "../i18n/en.json";
+
+interface Props {
+  skill: {
+    id: string;
+    icon: string;
+    titleKey: string;
+    descKey: string;
+  };
+}
+
+const { skill } = Astro.props as Props;
+const copy = (key: string) => en[key as keyof typeof en] ?? key;
+---
+
+<article class="rounded-lg border border-color-border bg-color-surface p-5 shadow-card">
+  <span class="mb-4 block text-[28px] font-semibold leading-none text-color-accent-dark" aria-hidden="true">
+    {skill.icon}
+  </span>
+  <h3 class="text-lg font-semibold leading-tight text-color-text-primary" data-i18n={skill.titleKey}>
+    {copy(skill.titleKey)}
+  </h3>
+  <p class="mt-2 text-sm leading-[1.55] text-color-text-secondary" data-i18n={skill.descKey}>
+    {copy(skill.descKey)}
+  </p>
+</article>
