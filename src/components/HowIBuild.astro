@@ -3,7 +3,7 @@ import techSkills from "../data/techSkills.json";
 import en from "../i18n/en.json";
 
 const copy = (key: string) => en[key as keyof typeof en] ?? key;
-const cardOffsets = ["lg:translate-y-5", "lg:-translate-y-5", "lg:translate-y-0", "lg:translate-y-5", "lg:-translate-y-5"];
+const cardOffsets = ["workflow-card--low", "workflow-card--high", "workflow-card--center", "workflow-card--low", "workflow-card--high"];
 ---
 
 <section id="how-i-build" class="section-fade relative bg-color-tech-bg py-16 lg:py-20" data-reveal>
@@ -60,12 +60,13 @@ const cardOffsets = ["lg:translate-y-5", "lg:-translate-y-5", "lg:translate-y-0"
     top: 16.25rem;
     bottom: 2rem;
     width: 1px;
-    background: linear-gradient(to bottom, rgba(122, 158, 135, 0), rgba(122, 158, 135, 0.34), rgba(122, 158, 135, 0));
+    background: linear-gradient(to bottom, rgba(122, 158, 135, 0), rgba(122, 158, 135, 0.46), rgba(122, 158, 135, 0));
+    filter: drop-shadow(0 0 5px rgba(122, 158, 135, 0.2));
   }
 
   .workflow-origin {
     position: relative;
-    z-index: 2;
+    z-index: 0;
     width: min(84vw, 340px);
     margin: 0 auto;
   }
@@ -74,25 +75,18 @@ const cardOffsets = ["lg:translate-y-5", "lg:-translate-y-5", "lg:translate-y-0"
     content: "";
     position: absolute;
     z-index: -1;
-    inset: 7% -16% 12% 4%;
+    inset: 1% -4% 7% -3%;
     border-radius: 58% 42% 46% 54%;
     background:
-      radial-gradient(ellipse at 42% 44%, rgba(167, 190, 174, 0.28), rgba(167, 190, 174, 0.1) 47%, transparent 72%),
-      radial-gradient(ellipse at 74% 62%, rgba(212, 165, 165, 0.13), transparent 64%);
-    filter: blur(12px);
+      radial-gradient(ellipse at 40% 42%, rgba(122, 158, 135, 0.45), rgba(167, 190, 174, 0.34) 48%, transparent 72%),
+      radial-gradient(ellipse at 62% 62%, rgba(212, 165, 165, 0.32), transparent 64%);
+    filter: blur(9px);
     transform: rotate(-12deg);
   }
 
-  .workflow-origin::after {
-    content: "";
-    position: absolute;
-    inset: auto 7% -1px;
-    height: 16%;
-    background: linear-gradient(to bottom, rgba(240, 243, 241, 0), rgba(240, 243, 241, 0.88));
-    pointer-events: none;
-  }
-
   .workflow-origin img {
+    position: relative;
+    z-index: 2;
     display: block;
     width: 100%;
     height: auto;
@@ -102,17 +96,36 @@ const cardOffsets = ["lg:translate-y-5", "lg:-translate-y-5", "lg:translate-y-0"
 
   .workflow-steps {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     display: grid;
     gap: 1rem;
   }
 
+  html[data-theme="dark"] .workflow-origin::before {
+    background:
+      radial-gradient(ellipse at 40% 42%, rgba(122, 158, 135, 0.18), rgba(167, 190, 174, 0.08) 48%, transparent 72%),
+      radial-gradient(ellipse at 62% 62%, rgba(212, 165, 165, 0.1), transparent 64%);
+  }
+
   .workflow-card {
     position: relative;
+    z-index: 1;
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.78);
+    background: color-mix(in srgb, var(--color-surface) 78%, transparent);
     padding: 1.25rem;
+    --workflow-card-offset: 0px;
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+    transform: translateY(var(--workflow-card-offset));
+  }
+
+  .workflow-card:hover {
+    border-color: rgba(122, 158, 135, 0.34);
+    box-shadow: 0 10px 28px rgba(74, 74, 74, 0.07);
+    transform: translateY(calc(var(--workflow-card-offset) - 4px)) scale(1.008);
   }
 
   .workflow-number {
@@ -153,18 +166,19 @@ const cardOffsets = ["lg:translate-y-5", "lg:-translate-y-5", "lg:translate-y-0"
     }
 
     .workflow-editorial::before {
-      inset-inline: 13.85rem 2rem;
+      inset-inline: 13.85rem 0.75rem;
       top: 45.5%;
       bottom: auto;
       width: auto;
       height: 1px;
-      background: linear-gradient(to right, rgba(122, 158, 135, 0.36), rgba(122, 158, 135, 0.56), rgba(122, 158, 135, 0.16));
+      background: linear-gradient(to right, rgba(122, 158, 135, 0.48), rgba(122, 158, 135, 0.7), rgba(122, 158, 135, 0.24));
+      filter: drop-shadow(0 0 6px rgba(122, 158, 135, 0.22));
     }
 
     .workflow-origin {
-      width: 300px;
+      width: 274px;
       margin-inline: 0;
-      transform: translate(-5.25rem, -58px);
+      transform: translate(-5.75rem, -58px);
     }
 
     .workflow-origin img {
@@ -193,6 +207,18 @@ const cardOffsets = ["lg:translate-y-5", "lg:-translate-y-5", "lg:translate-y-0"
       min-height: 178px;
       padding: 1.2rem 1.2rem 1.25rem;
       box-shadow: 0 8px 24px rgba(74, 74, 74, 0.035);
+    }
+
+    .workflow-card--low {
+      --workflow-card-offset: 1.25rem;
+    }
+
+    .workflow-card--high {
+      --workflow-card-offset: -1.25rem;
+    }
+
+    .workflow-card--center {
+      --workflow-card-offset: 0px;
     }
 
     .workflow-card:first-child {

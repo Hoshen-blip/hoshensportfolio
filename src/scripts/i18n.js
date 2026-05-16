@@ -1,4 +1,5 @@
 const supportedLanguages = ["en", "he"];
+const supportedThemes = ["light", "dark"];
 
 function readTranslations(lang) {
   const node = document.getElementById(`i18n-${lang}`);
@@ -107,6 +108,53 @@ function setNavShadow() {
   window.addEventListener("scroll", update, { passive: true });
 }
 
+function getPreferredTheme() {
+  let stored = null;
+  try {
+    stored = localStorage.getItem("theme");
+  } catch {}
+  if (supportedThemes.includes(stored)) return stored;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function setThemeButton(theme) {
+  const button = document.querySelector("[data-theme-toggle]");
+  if (!button) return;
+
+  const isDark = theme === "dark";
+  button.setAttribute("aria-pressed", String(isDark));
+  button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  button.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+}
+
+function applyTheme(theme, persist = true) {
+  const normalized = supportedThemes.includes(theme) ? theme : getPreferredTheme();
+  document.documentElement.dataset.theme = normalized;
+  document.getElementById("theme-color-meta")?.setAttribute("content", normalized === "dark" ? "#171815" : "#F7F7F2");
+  setThemeButton(normalized);
+  if (persist) {
+    try {
+      localStorage.setItem("theme", normalized);
+    } catch {}
+  }
+}
+
+function initTheme() {
+  applyTheme(getPreferredTheme(), false);
+
+  document.querySelector("[data-theme-toggle]")?.addEventListener("click", () => {
+    const current = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    applyTheme(current === "dark" ? "light" : "dark");
+  });
+
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
+    try {
+      if (localStorage.getItem("theme")) return;
+    } catch {}
+    applyTheme(event.matches ? "dark" : "light", false);
+  });
+}
+
 function applyLanguage(lang) {
   const normalized = supportedLanguages.includes(lang) ? lang : "en";
   setDocumentDirection(normalized);
@@ -116,6 +164,7 @@ function applyLanguage(lang) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   applyLanguage(localStorage.getItem("lang") || "en");
 
   document.querySelectorAll("[data-lang-button]").forEach((button) => {

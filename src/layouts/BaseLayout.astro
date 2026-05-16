@@ -23,7 +23,7 @@ const description =
     <meta property="og:image" content="/assets/images/portrait-gaze.webp" />
     <meta property="og:site_name" content="Hoshen Lichi Portfolio" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#F7F7F2" />
+    <meta name="theme-color" content="#F7F7F2" id="theme-color-meta" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,7 +31,19 @@ const description =
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600;1,700&family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;600&family=Frank+Ruhl+Libre:wght@400;700&family=Heebo:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <script is:inline>document.documentElement.classList.add("js");</script>
+    <script is:inline>
+      document.documentElement.classList.add("js");
+      (() => {
+        const storageKey = "theme";
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        let storedTheme = null;
+        try {
+          storedTheme = localStorage.getItem(storageKey);
+        } catch {}
+        const theme = storedTheme === "dark" || storedTheme === "light" ? storedTheme : prefersDark ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
   </head>
   <body>
     <a class="skip-to-main" href="#main" data-i18n="a11y.skip">Skip to main content</a>
