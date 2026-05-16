@@ -224,5 +224,23 @@ const cardOffsets = ["workflow-card--low", "workflow-card--high", "workflow-card
     .workflow-card:first-child {
       margin-inline-start: -0.45rem;
     }
+
+    :global(html[dir="rtl"]) .workflow-origin {
+      grid-column: 1;
+      transform: translate(5.75rem, -58px);
+    }
+
+    :global(html[dir="rtl"]) .workflow-steps {
+      grid-column: 2;
+      direction: rtl;
+      flex-direction: row;
+      margin-inline-start: 0;
+      margin-inline-end: -1.35rem;
+    }
+
+    :global(html[dir="rtl"]) .workflow-card:first-child {
+      margin-inline-start: 0;
+      margin-inline-end: -0.45rem;
+    }
   }
 </style>

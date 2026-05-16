@@ -446,6 +446,22 @@ html.reveal-ready [data-reveal].is-visible {
     -webkit-mask-composite: source-in;
   }
 
+  html[dir="rtl"] .hero-editorial-portrait {
+    right: auto;
+    left: -21%;
+  }
+
+  html[dir="rtl"] .hero-editorial-image {
+    mask-image: radial-gradient(ellipse 90% 100% at 30% 50%, black 40%, rgba(0, 0, 0, 0.8) 55%, rgba(0, 0, 0, 0.3) 70%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 100% at 30% 50%, black 40%, rgba(0, 0, 0, 0.8) 55%, rgba(0, 0, 0, 0.3) 70%, transparent 85%);
+  }
+
+  @media (min-width: 1280px) {
+    html[dir="rtl"] .hero-editorial-portrait {
+      left: -18%;
+    }
+  }
+
   .project-card {
     flex-basis: 340px;
   }
