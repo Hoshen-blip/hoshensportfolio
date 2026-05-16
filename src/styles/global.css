@@ -434,6 +434,11 @@ html.reveal-ready [data-reveal].is-visible {
     padding-block-end: 5rem;
   }
 
+  html[dir="rtl"] .hero-editorial-copy {
+    margin-inline-start: 0;
+    margin-inline-end: 34%;
+  }
+
   .hero-editorial-image {
     transform: translateX(11.25rem);
     mask-image:
